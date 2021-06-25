@@ -1,23 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
     <title>Document</title>
+    <style>
+        .verticalTotal{
+            height: 100vh;
+            padding-top: 5vh;
+        }       
+
+        .card {
+            border: none;
+        }
+    </style>
 </head>
-<body>    
+
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            
+
+            <div class="col-auto">
+                <div id="cardLogo" class="verticalTotal">
+
+                </div>               
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
     <script>
-        
+        var cardLogo = document.getElementById('cardLogo');
+
         const queryString = window.location.search;
         const urlParams = new URLSearchParams(queryString);
         const action = urlParams.get('action');
+        const logo = urlParams.get('logo_link');
         console.log(action);
-        if(action == "email"){
+        if (action == "email") {
             const email = urlParams.get('email');
             window.location.href = `mailto:${email}`;
-        }       
-        
+        }
+        if(logo){            
+            cardLogo.innerHTML = `
+                <div class="card text-center" style="width: 24rem;">
+                    <img src="${logo}" class="card-img-top">
+                    <div class="card-body">
+                      <h5 class="card-title">${urlParams.get('nome')}</h5>                      
+                    </div>
+                </div>
+            `;
+
+        }
+
     </script>
 </body>
+
 </html>
