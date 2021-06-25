@@ -6,10 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<body>
-    <a href="mailto:webmaster@example.com">Jon Doe</a>.<br>
+<body>    
     <script>
-        window.location.href = "http://www.devmedia.com.br";
+        
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const action = urlParams.get('action');
+        console.log(action);
+        if(action == "email"){
+            const email = urlParams.get('email');
+            window.location.href = `mailto:${email}`;
+        }       
+        
     </script>
 </body>
 </html>
